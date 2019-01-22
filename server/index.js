@@ -1,30 +1,13 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-
-const getTracks = require('../database/helpers.jsx').getTracks;
-const sortTracks = require('../database/helpers.jsx').sortTracks;
-
+const morgan = require('morgan');
+const path = require('path');
 const app = express();
+const port = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(morgan('dev'));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(express.static(`${__dirname}/../client/dist`));
-app.use(/\/\d+/, express.static('./client/dist/'));
-
-app.get('/tracks/:id', (req, res) => {
-  const { id } = req.params;
-  getTracks((err, data) => {
-    if (err) return err;
-    const sortedData = sortTracks(data, id);
-    res.send(sortedData);
-  });
-});
-
-const port = 3001;
+app.use(/(\/\d+)/, express.static(path.join(__dirname, 'public')));
 
 app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+  console.log(`server running at: http://localhost:${port}`);
 });
