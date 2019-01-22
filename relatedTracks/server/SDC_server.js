@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(/(\/\d+)/, express.static('./client/dist/'));
+app.use(express.static('./client/dist/'));
 
 // API Request Handlers
 app.get('/tracks/:id', controller.getRelatedInfo);
@@ -25,7 +25,7 @@ app.put('/updatePlayListDescription', controller.updatePlaylistDescription);
 
 app.delete('/deletePlayList', controller.deletePlaylist);
 
-const port = 9000; // Change Me for Proxy!!
+const port = 3001; // Change Me for Proxy!!
 
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running on port: ${port}`);

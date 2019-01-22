@@ -10,13 +10,16 @@ class Related extends React.Component {
       album: '',
       relatedTracks: '',
       playlists: '',
-      id: '',
+      id: ''
     };
   }
   componentDidMount() {
     console.log('component mounted');
     var songId;
-    var id = window.location.pathname.slice(1, window.location.pathname.length - 1);
+    var id = window.location.pathname.slice(
+      1,
+      window.location.pathname.length - 1
+    );
 
     id ? (songId = Number(id)) : (songId = this.state.id);
 
@@ -26,13 +29,13 @@ class Related extends React.Component {
   getRelatedTracks(id) {
     console.log('called!');
     axios
-      .get(`http://localhost:9000/tracks/${id}`)
+      .get(`http://localhost:3001/tracks/${id}`)
       .then(res => {
         console.log(res);
         this.setState({
           album: res.data.album,
           relatedTracks: res.data.relatedTracks,
-          playlists: res.data.playlists,
+          playlists: res.data.playlists
         });
         console.log(this.state);
       })
@@ -50,7 +53,7 @@ class Related extends React.Component {
             borderLeft: 'groove',
             borderWidth: 1,
             borderColor: 'gray',
-            paddingLeft: 30,
+            paddingLeft: 30
           }}
         >
           <Sources
@@ -64,4 +67,4 @@ class Related extends React.Component {
   }
 }
 
-ReactDOM.render(<Related />, document.getElementById('Related'));
+ReactDOM.render(<Related />, document.getElementById('relatedTracks'));
