@@ -1,5 +1,5 @@
 node_modules
-client/dist/bundle.js
-database/data
+relatedTracks/client/dist/bundle.js
+relatedTracks/database/data
 newrelic.js
 newrelic_agent.log
