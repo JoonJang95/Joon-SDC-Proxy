@@ -1,5 +1,4 @@
 node_modules
-relatedTracks/client/dist/bundle.js
-relatedTracks/database/data
 newrelic.js
 newrelic_agent.log
+.env
